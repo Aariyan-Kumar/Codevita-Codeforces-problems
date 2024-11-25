@@ -27,16 +27,21 @@ public class Q31_StringPairs {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int n = Integer.parseInt(sc.nextLine());
-
-        int number[] = new int[n];
-
-        for(int i = 0; i < n; i++)
+        int k = Integer.parseInt(sc.nextLine());
+        
+        
+        for(int i = 0; i < k; i++)
         {
-            number[i] = sc.nextInt();
+            int n = sc.nextInt();
+            int number[] = new int[n];
+
+            for(int j = 0; j < n; j++)
+            {
+                number[j] = sc.nextInt();
+            }
+            System.out.println(stringpair(number));
         }
 
-        System.out.println(stringpair(number));
 
 
         sc.close();
