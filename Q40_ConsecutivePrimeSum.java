@@ -1,3 +1,38 @@
+/*
+* Consecutive Prime Sum Some prime numbers can be expressed as a sum of other consecutive prime numbers.
+    For Example:
+    5=2+3,
+    17=2+3+5+7,
+    41=2+3+5+7+11+13.
+* Your task is to find out how many prime numbers which satisfy this property are present in the range 3 to N subject to a constraint that summation should always start with number 2.
+
+* Write code to find out the number of prime numbers that satisfy the above-mentioned property in a given range.
+
+    Input Format:
+    The first line of input will contain a single integer 
+    T, denoting the number of test cases.Each test case consists of a single integer N
+    Output Format:
+    Print the total number of all such prime numbers which are less than or equal to N.
+
+    Constraints
+    1 ≤ T ≤ 10^5
+    2 < N ≤ 10^5
+ 
+    Sample 1:
+    Input
+    2
+    20
+    15
+    Output
+    2
+    1
+    Explanation:
+    Test Case 1: Below 20 are two such cases 5 and 17
+    5 = 2 + 3
+    17 = 2 + 3 + 5 + 7 
+*/
+
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
