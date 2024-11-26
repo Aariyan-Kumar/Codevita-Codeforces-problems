@@ -1,77 +1,53 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Q40_ConsecutivePrimeSum {
+
+    private static int limit = 100000 + 1;
+    private static ArrayList<Boolean> isPrime = new ArrayList<>(Collections.nCopies(limit, true));
+    private static ArrayList<Integer> primes = new ArrayList<>();
+    
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        
+        isPrime.set(0,false);
+        isPrime.set(1,false);
+
+        for(int i = 2; i * i <= limit; i++)
+        {
+            if(isPrime.get(i)) {
+                primes.add(i);
+                for(int j = i * i; j < limit; j = j + i) {
+                    isPrime.set(j, false);
+                }
+            }
+        }
+
 
         int T = Integer.parseInt(sc.nextLine());
-        int ans[] = new int[T];
-
+        
         for(int i = 0; i < T; i++)
         {
-            int N = sc.nextInt();
-            int res = consecutivePrime(N);
-            ans[i] = res;
+            int n = Integer.parseInt(sc.nextLine());
+            int sum = 5;
+            int j = 2;
+            int count = 0;
+            while (sum <= n && j < primes.size()) {
+                if(isPrime.get(sum))
+                {
+                    count++;
+                }
+
+                sum = sum + primes.get(j);
+                j++;
+            }
+
+            System.out.println(count);
         }
 
-        for(int i : ans)
-        {
-            System.out.println(i);
-        }
         sc.close();
-    }
-    
-    private static int consecutivePrime(int n) 
-    {
-        int x = 0;
-        int count = 0;
-        for(int i = 4; i <= n; i++)
-        {
-            if(isPrime(i))
-            {
-                x = rangePrimeSum(i);
-                if (x == i) 
-                {
-                    count++;                    
-                }
-            }
-        }
-        return count;
-    }
-
-    private static int rangePrimeSum(int n) 
-    {
-        int sum = 0;
-        for(int i = 1; i < n; i++)
-        {
-            if(isPrime(i))
-            {
-                sum = sum + i;
-                if(sum == n)
-                {
-                    return sum;
-                }
-            }
-        }
-        return sum;
-    }
-
-    private static boolean isPrime(int n) 
-    {
-        int factCount = 0;
-        for(int i = 1; i <= n; i++)
-        {
-            if(n % i == 0)
-            {
-                factCount++;
-            }
-        }
-        if(factCount == 2)
-        {
-            return true;
-        }
-        
-        return false;
     }
 
 }
