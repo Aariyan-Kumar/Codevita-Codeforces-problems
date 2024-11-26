@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Q27_RockSamples {
@@ -16,25 +17,57 @@ public class Q27_RockSamples {
         int range[][] = new int[r][2]; // 2D Array for the input of the range.
 
         for (int i = 0; i < r; i++) {
-            for (int j = 0; j < 2; j++) {
-                range[i][j] = sc.nextInt(); // Accepting the values of the range.
-            }
+            range[i][0] = sc.nextInt();
+            range[i][1] = sc.nextInt();
         }
+
+        Arrays.sort(rocks);
 
         int res[] = new int[r]; // Array for storing result
 
         for (int i = 0; i < r; i++) {
-            for (int j = 0; j < s; j++) {
-                if (rocks[j] >= range[i][0] && rocks[j] <= range[i][1]) {
-                    res[i]++;
-                }
-            }
+            int min = range[i][0];
+            int max = range[i][1];
+
+            int startIndex = lowerBound(rocks, min);
+            int endIndex = upperBound(rocks, max);
+
+            res[i] = endIndex - startIndex;
         }
 
-        for (int i = 0; i < r; i++) {
-            System.out.print(res[i] + " "); // printing the output
+        for (int count : res) {
+            System.out.println(count); // printing the output
         }
 
         sc.close();
     }
+
+    private static int upperBound(int[] rocks, int min) {
+        int left = 0, right = rocks.length;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if(rocks[mid] <= min)
+            {
+                left = mid + 1;
+            }
+            else {
+                right = mid;
+            }
+        }
+        return left;
+    }
+
+    private static int lowerBound(int[] rocks, int max) {
+        int left = 0, right = rocks.length;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (rocks[mid] < max) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return left;
+    }
+
 }
